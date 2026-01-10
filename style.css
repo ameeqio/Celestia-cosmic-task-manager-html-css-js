@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+}
+
+.main {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("planet_assets/yafra.jpg");
+  background-size: cover;
+  transition: background-image 2s linear;
+}
+
+.todo-box {
+  height: 500px;
+  width: 600px;
+  background-color: #222;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-heading {
+  padding-left: 15px;
+  /* background-color: blueviolet; */
+  font-size: 3rem;
+  color: white;
+  font-weight: 400;
+}
+
+.todo-nav {
+  /* background-color: blue; */
+  padding-left: 9px;
+  color: white;
+}
+
+.todo-quote {
+  font-size: 0.9rem;
+}
+
+.add-task-btn {
+  margin-left: 4%;
+  padding: 7.5px 14px;
+  letter-spacing: 2px;
+  background: rgba(74, 78, 105, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  font-family: "Poppins", sans-serif;
+}
+
+.add-task-btn:hover {
+  background: rgba(74, 78, 105, 0.6);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.add-task-btn:active {
+  transform: scale(0.97);
+}
+
+.todo-tasks-box {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  padding: 7px 0px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 7px;
+}
+
+.todo-tasks-box::-webkit-scrollbar {
+  width: 2px;
+}
+
+.todo-tasks-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.todo-tasks-box::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+}
+
+.todo-tasks-box::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.task {
+  padding: 14px;
+  min-height: 60px;
+  width: 100%;
+  margin-bottom: 7px;
+  border-radius: 12px;
+  letter-spacing: 2px;
+  background: rgba(74, 78, 105, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* task-items styling */
+
+#task-check-btn {
+  padding: 3px 3px;
+  border: none;
+  border-radius: 6px;
+  background-color: rgba(34, 34, 59, 0.4);
+  transition: all 0.17s linear;
+  cursor: pointer;
+}
+
+#task-check-btn:hover {
+  background-color: rgba(34, 34, 59, 0.5);
+}
+
+#task-check-btn:active {
+  background-color: rgba(34, 34, 59, 0.4);
+}
+
+#task-delete-btn {
+  padding: 3px 3px;
+  border: none;
+  border-radius: 6px;
+  background-color: rgba(34, 34, 59, 0.4);
+  transition: all 0.17s linear;
+  cursor: pointer;
+}
+
+#task-delete-btn:hover {
+  background-color: rgba(34, 34, 59, 0.5);
+}
+
+#task-delete-btn:active {
+  background-color: rgba(34, 34, 59, 0.4);
+}
+
+#task-input {
+  padding: 9px;
+  width: 87%;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background-color: transparent;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+input::placeholder {
+  color: #c3c3c3;
+  opacity: 1;
+}
+
