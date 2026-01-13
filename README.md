@@ -1,2 +1,3 @@
 # To-do-html-css-js
-My practice project — a todo list using html,css and js to strengthen my front-end web development skills.
+Practice project - a normal todo but it's "one step deeper into the unknown", everytime user completes a task, a new planet adds to their universe!!
+Tech stack used is html, css and js.

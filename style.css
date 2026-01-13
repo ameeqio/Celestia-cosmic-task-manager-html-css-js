@@ -16,16 +16,19 @@ body {
   width: 100%;
   background-color: black;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("planet_assets/yafra.jpg");
+  background-image: url("planet_assets/oxus.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
   background-size: cover;
   transition: background-image 2s linear;
 }
 
 .todo-box {
   height: 500px;
-  width: 600px;
+  width: 650px;
   background-color: #222;
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.15);
@@ -44,6 +47,7 @@ body {
   font-size: 3rem;
   color: white;
   font-weight: 400;
+  user-select: none;
 }
 
 .todo-nav {
@@ -53,12 +57,13 @@ body {
 }
 
 .todo-quote {
-  font-size: 0.9rem;
+  font-size: 0.94rem;
+  user-select: none;
 }
 
 .add-task-btn {
-  margin-left: 4%;
-  padding: 7.5px 14px;
+  margin-left: 8%;
+  padding: 7.5px 12px;
   letter-spacing: 2px;
   background: rgba(74, 78, 105, 0.45);
   backdrop-filter: blur(6px);
@@ -131,9 +136,9 @@ body {
 }
 
 /* task-items styling */
-
-#task-check-btn {
-  padding: 3px 3px;
+/* .task-check-btn {
+  height: 23px;
+  width: 23px;
   border: none;
   border-radius: 6px;
   background-color: rgba(34, 34, 59, 0.4);
@@ -141,16 +146,16 @@ body {
   cursor: pointer;
 }
 
-#task-check-btn:hover {
+.task-check-btn:hover {
   background-color: rgba(34, 34, 59, 0.5);
 }
 
-#task-check-btn:active {
+.task-check-btn:active {
   background-color: rgba(34, 34, 59, 0.4);
 }
 
-#task-delete-btn {
-  padding: 3px 3px;
+.task-delete-btn {
+  padding: 5px 5px;
   border: none;
   border-radius: 6px;
   background-color: rgba(34, 34, 59, 0.4);
@@ -158,15 +163,15 @@ body {
   cursor: pointer;
 }
 
-#task-delete-btn:hover {
+.task-delete-btn:hover {
   background-color: rgba(34, 34, 59, 0.5);
 }
 
-#task-delete-btn:active {
+.task-delete-btn:active {
   background-color: rgba(34, 34, 59, 0.4);
-}
+} */
 
-#task-input {
+.inp-task {
   padding: 9px;
   width: 87%;
   border: none;
@@ -175,6 +180,8 @@ body {
   background-color: transparent;
   color: white;
   font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  
 }
 
 input::placeholder {
@@ -182,3 +189,48 @@ input::placeholder {
   opacity: 1;
 }
 
+.tick-btn {
+  height: 20px;
+  width: 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: rgba(34, 34, 59, 0.4);
+  transition: all 0.17s linear;
+  cursor: pointer;
+}
+
+.tick-btn:hover {
+  background-color: rgba(34, 34, 59, 0.5);
+}
+
+.tick-btn:active {
+  background-color: rgba(34, 34, 59, 0.4);
+} 
+
+.del-btn {
+  height: 20px;
+  width: 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: rgba(34, 34, 59, 0.4);
+  transition: all 0.17s linear;
+  cursor: pointer;
+}
+
+.del-btn:hover {
+  background-color: rgba(34, 34, 59, 0.5);
+}
+
+.del-btn:active {
+  background-color: rgba(34, 34, 59, 0.4);
+} 
+
+i {
+  font-size: 1rem;
+  font-weight: 100;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  margin-top: 20px;
+  letter-spacing: 4px;
+  transition: all 3s linear;
+}
