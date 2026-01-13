@@ -1,24 +1,17 @@
 // adding a new task on add-button click
 const addItemBtn = document.querySelector(".add-task-btn");
 const taskBox = document.querySelector(".todo-tasks-box");
-localStorage.clear;
+
 // an array to store the todos in the form of objects
 let todos = [{ id: 1, taskinp: "", checked: false }];
 let obj_todo;
-// let count = 2;
-// let newCount = 2;
 
 addItemBtn.addEventListener("click", function (a) {
   let newTask = document.querySelector(".task").cloneNode(true);
 
-  // console.dir(taskBox);
   // setting new ids for input tasks
   let val = taskBox.children.length;
-  // console.log(val);
   newTask.querySelector(".inp-task").id = `${val+1}`;
-  // count++;
-
-  
 
   // reset previous input content and textcontent of the button
   newTask.querySelector(".inp-task").value = "";
@@ -28,7 +21,6 @@ addItemBtn.addEventListener("click", function (a) {
   todos.push(obj_todo);
   localStorage.setItem("todos-storage", JSON.stringify(todos));
   taskBox.appendChild(newTask);
-  // console.log(todos);
 });
 
 // random planet image generator
@@ -74,7 +66,6 @@ function planetSelector() {
 const todoBox = document.querySelector(".todo-box");
 taskBox.addEventListener("click", function (e) {
   localStorage.clear;
-  // console.dir(taskBox);
   // the just below line ensures the click happened on the tick-btn
   if (e.target.className === "tick-btn") {
     if (e.target.textContent == "") {
@@ -91,7 +82,6 @@ taskBox.addEventListener("click", function (e) {
 
     // updating the corresponding object checked status
     let parent = e.target.parentElement;
-    // console.dir(parent);
     if (parent.children[0].textContent == "") {
       todos[parent.children[1].id - 1].checked = false;
     } else {
@@ -102,29 +92,26 @@ taskBox.addEventListener("click", function (e) {
 
   // the just below line ensures the click happened on the del-btn
   if (e.target.className === "del-btn") {
-    // console.dir(taskBox);
     let parent = e.target.parentElement;
     let parArrIndx = [...taskBox.children].indexOf(parent); // contains the particular index of the task div deleted before delete
-    // console.log(typeof(parArrIndx));
     if (parArrIndx >= 0 && parArrIndx < (taskBox.children.length - 1)) {
       for (let i = parArrIndx + 1 ; i<taskBox.children.length ; i++) {
         taskBox.children[i].children[1].id = `${(taskBox.children[i].children[1].id) - 1}`;
         todos[i].id -= 1;
-        // count--;
       }
     }
 
-
-
-    // newCount = count + 1;
-
-    todos.splice(parArrIndx, 1);
-    if (taskBox.children.length > 1) {
-      taskBox.removeChild(parent);
+    if (parArrIndx == 0 && taskBox.children.length == 1) {
+      todos[0].taskinp = "";
+      taskBox.children[0].children[1].value = "";
+      taskBox.children[0].children[0].textContent = "";
     }
-    // else code to be written here!!
-    
-    // console.log(todos);
+    else {
+      todos.splice(parArrIndx, 1);
+      taskBox.removeChild(parent);
+      // now the only thing is the handling of local storage!!
+      // how to remove the particular object from the array present as a string in the localStorage!!
+    }
     localStorage.setItem("todos-storage", JSON.stringify(todos));
 
   }
