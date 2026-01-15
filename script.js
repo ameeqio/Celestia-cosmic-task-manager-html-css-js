@@ -4,24 +4,28 @@ const taskBox = document.querySelector(".todo-tasks-box");
 
 function saveTodos() {
   localStorage.setItem("todos-storage", JSON.stringify(todos));
-};
+}
 
 // an array to store the todos in the form of objects
 let todos = [{ id: 1, taskinp: "", checked: false }];
 let obj_todo;
 
-addItemBtn.addEventListener("click", function (a) {
+addItemBtn.addEventListener("click", function () {
   let newTask = document.querySelector(".task").cloneNode(true);
 
   // setting new ids for input tasks
   let val = taskBox.children.length;
-  newTask.querySelector(".inp-task").id = `${val+1}`;
+  newTask.querySelector(".inp-task").id = `${val + 1}`;
 
   // reset previous input content and textcontent of the button
   newTask.querySelector(".inp-task").value = "";
   newTask.querySelector(".tick-btn").textContent = "";
 
-  obj_todo = { id: Number(newTask.querySelector(".inp-task").id) , taskinp: "", checked: false };
+  obj_todo = {
+    id: Number(newTask.querySelector(".inp-task").id),
+    taskinp: "",
+    checked: false,
+  };
   todos.push(obj_todo);
   saveTodos();
   taskBox.appendChild(newTask);
@@ -69,17 +73,17 @@ function planetSelector() {
 // code for tick-boxes
 const todoBox = document.querySelector(".todo-box");
 taskBox.addEventListener("click", function (e) {
-  localStorage.clear;
   // the just below line ensures the click happened on the tick-btn
   if (e.target.className === "tick-btn") {
     if (e.target.textContent == "") {
       e.target.textContent = "✔";
+      let bg_img = planetSelector();
       document.querySelector(
         ".main"
-      ).style.backgroundImage = `url(planet_assets/${planetSelector()}.jpg)`;
+      ).style.backgroundImage = `url(planet_assets/${bg_img}.jpg)`;
       document.querySelector(
         "i"
-      ).textContent = `${planetSelector()} — unlocked`;
+      ).textContent = `${bg_img} — unlocked`;
     } else {
       e.target.textContent = "";
     }
@@ -98,9 +102,11 @@ taskBox.addEventListener("click", function (e) {
   if (e.target.className === "del-btn") {
     let parent = e.target.parentElement;
     let parArrIndx = [...taskBox.children].indexOf(parent); // contains the particular index of the task div deleted before delete
-    if (parArrIndx >= 0 && parArrIndx < (taskBox.children.length - 1)) {
-      for (let i = parArrIndx + 1 ; i<taskBox.children.length ; i++) {
-        taskBox.children[i].children[1].id = `${(taskBox.children[i].children[1].id) - 1}`;
+    if (parArrIndx >= 0 && parArrIndx < taskBox.children.length - 1) {
+      for (let i = parArrIndx + 1; i < taskBox.children.length; i++) {
+        taskBox.children[i].children[1].id = `${
+          taskBox.children[i].children[1].id - 1
+        }`;
         todos[i].id -= 1;
       }
     }
@@ -109,15 +115,13 @@ taskBox.addEventListener("click", function (e) {
       todos[0].taskinp = "";
       taskBox.children[0].children[1].value = "";
       taskBox.children[0].children[0].textContent = "";
-    }
-    else {
+    } else {
       todos.splice(parArrIndx, 1);
       taskBox.removeChild(parent);
       // now the only thing is the handling of local storage!!
       // how to remove the particular object from the array present as a string in the localStorage!!
     }
     saveTodos();
-
   }
 
   // the just below line ensures the click happened on the input-field
@@ -125,9 +129,40 @@ taskBox.addEventListener("click", function (e) {
     e.target.addEventListener("change", function (dets) {
       let parent = e.target.parentElement;
       todos[parent.children[1].id - 1].taskinp = parent.children[1].value;
-      
+
       saveTodos();
     });
   }
 });
 
+window.addEventListener("DOMContentLoaded", () => {
+  // when this fires, read the localStorage and reflect back to the UI
+  todos = JSON.parse(localStorage.getItem("todos-storage"));
+  
+  // savedArr now contains everything before the page refreshes
+  for (let i = 2; i <= todos.length; i++) {
+    // set up the first-task id and also restore the bg image
+    // also we need to store the bg image in the localStorage or something in order to restore that
+    let newTask = document.querySelector(".task").cloneNode(true);
+
+    newTask.querySelector(".inp-task").id = `${i}`;
+    
+    // reset previous input content and textcontent of the button
+    newTask.querySelector(".inp-task").value = "";
+    newTask.querySelector(".tick-btn").textContent = "";
+
+    // resetting the previous values
+
+    // button tick restore
+    if (todos[i-1].checked) {
+      newTask.querySelector(".tick-btn").textContent = "✔";
+    }
+    else {
+      newTask.querySelector(".tick-btn").textContent = "";
+    }
+    // input values restore
+    newTask.querySelector(".inp-task").value = todos[i-1].taskinp;
+
+    taskBox.appendChild(newTask);
+  }
+});
