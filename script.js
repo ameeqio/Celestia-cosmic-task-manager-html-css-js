@@ -2,6 +2,10 @@
 const addItemBtn = document.querySelector(".add-task-btn");
 const taskBox = document.querySelector(".todo-tasks-box");
 
+function saveTodos() {
+  localStorage.setItem("todos-storage", JSON.stringify(todos));
+};
+
 // an array to store the todos in the form of objects
 let todos = [{ id: 1, taskinp: "", checked: false }];
 let obj_todo;
@@ -19,7 +23,7 @@ addItemBtn.addEventListener("click", function (a) {
 
   obj_todo = { id: Number(newTask.querySelector(".inp-task").id) , taskinp: "", checked: false };
   todos.push(obj_todo);
-  localStorage.setItem("todos-storage", JSON.stringify(todos));
+  saveTodos();
   taskBox.appendChild(newTask);
 });
 
@@ -87,7 +91,7 @@ taskBox.addEventListener("click", function (e) {
     } else {
       todos[parent.children[1].id - 1].checked = true;
     }
-    localStorage.setItem("todos-storage", JSON.stringify(todos));
+    saveTodos();
   }
 
   // the just below line ensures the click happened on the del-btn
@@ -112,7 +116,7 @@ taskBox.addEventListener("click", function (e) {
       // now the only thing is the handling of local storage!!
       // how to remove the particular object from the array present as a string in the localStorage!!
     }
-    localStorage.setItem("todos-storage", JSON.stringify(todos));
+    saveTodos();
 
   }
 
@@ -121,8 +125,8 @@ taskBox.addEventListener("click", function (e) {
     e.target.addEventListener("change", function (dets) {
       let parent = e.target.parentElement;
       todos[parent.children[1].id - 1].taskinp = parent.children[1].value;
-      // console.log(todos);
-      localStorage.setItem("todos-storage", JSON.stringify(todos));
+      
+      saveTodos();
     });
   }
 });

@@ -44,7 +44,6 @@ body {
 
 .todo-heading {
   padding-left: 15px;
-  /* background-color: blueviolet; */
   font-size: 3rem;
   color: white;
   font-weight: 400;
@@ -140,42 +139,6 @@ body {
   align-items: center;
   justify-content: space-around;
 }
-
-/* task-items styling */
-/* .task-check-btn {
-  height: 23px;
-  width: 23px;
-  border: none;
-  border-radius: 6px;
-  background-color: rgba(34, 34, 59, 0.4);
-  transition: all 0.17s linear;
-  cursor: pointer;
-}
-
-.task-check-btn:hover {
-  background-color: rgba(34, 34, 59, 0.5);
-}
-
-.task-check-btn:active {
-  background-color: rgba(34, 34, 59, 0.4);
-}
-
-.task-delete-btn {
-  padding: 5px 5px;
-  border: none;
-  border-radius: 6px;
-  background-color: rgba(34, 34, 59, 0.4);
-  transition: all 0.17s linear;
-  cursor: pointer;
-}
-
-.task-delete-btn:hover {
-  background-color: rgba(34, 34, 59, 0.5);
-}
-
-.task-delete-btn:active {
-  background-color: rgba(34, 34, 59, 0.4);
-} */
 
 .inp-task {
   padding: 9px;
