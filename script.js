@@ -81,9 +81,9 @@ taskBox.addEventListener("click", function (e) {
       document.querySelector(
         ".main"
       ).style.backgroundImage = `url(planet_assets/${bg_img}.jpg)`;
-      document.querySelector(
-        "i"
-      ).textContent = `${bg_img} — unlocked`;
+      document.querySelector("i").textContent = `${bg_img} — unlocked`;
+      // storing the background image!!
+      localStorage.setItem("bg-img", bg_img);
     } else {
       e.target.textContent = "";
     }
@@ -118,8 +118,6 @@ taskBox.addEventListener("click", function (e) {
     } else {
       todos.splice(parArrIndx, 1);
       taskBox.removeChild(parent);
-      // now the only thing is the handling of local storage!!
-      // how to remove the particular object from the array present as a string in the localStorage!!
     }
     saveTodos();
   }
@@ -136,32 +134,51 @@ taskBox.addEventListener("click", function (e) {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
-  // when this fires, read the localStorage and reflect back to the UI
-  todos = JSON.parse(localStorage.getItem("todos-storage"));
-  
-  // savedArr now contains everything before the page refreshes
+  if (localStorage.getItem("todos-storage") !== null) {
+    todos = JSON.parse(localStorage.getItem("todos-storage"));
+  } else {
+    todos = [{ id: 1, taskinp: "", checked: false }];
+  }
+
+  let bg_img;
+
+  if (localStorage.getItem("bg-img")) {
+    bg_img = localStorage.getItem("bg-img");
+  } else {
+    bg_img = planetSelector();
+  }
+
+  document.querySelector(
+    ".main"
+  ).style.backgroundImage = `url(planet_assets/${bg_img}.jpg)`;
+  document.querySelector("i").textContent = `${bg_img} — unlocked`;
+
+  if (todos[0].checked) {
+    document.querySelector(".task").querySelector(".tick-btn").textContent =
+      "✔";
+  } else {
+    document.querySelector(".task").querySelector(".tick-btn").textContent = "";
+  }
+  document.querySelector(".task").querySelector(".inp-task").value =
+    todos[0].taskinp;
+
   for (let i = 2; i <= todos.length; i++) {
-    // set up the first-task id and also restore the bg image
-    // also we need to store the bg image in the localStorage or something in order to restore that
     let newTask = document.querySelector(".task").cloneNode(true);
 
     newTask.querySelector(".inp-task").id = `${i}`;
-    
+
     // reset previous input content and textcontent of the button
     newTask.querySelector(".inp-task").value = "";
     newTask.querySelector(".tick-btn").textContent = "";
 
-    // resetting the previous values
-
     // button tick restore
-    if (todos[i-1].checked) {
+    if (todos[i - 1].checked) {
       newTask.querySelector(".tick-btn").textContent = "✔";
-    }
-    else {
+    } else {
       newTask.querySelector(".tick-btn").textContent = "";
     }
     // input values restore
-    newTask.querySelector(".inp-task").value = todos[i-1].taskinp;
+    newTask.querySelector(".inp-task").value = todos[i - 1].taskinp;
 
     taskBox.appendChild(newTask);
   }
