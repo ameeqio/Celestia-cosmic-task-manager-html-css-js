@@ -112,6 +112,7 @@ taskBox.addEventListener("click", function (e) {
     }
 
     if (parArrIndx == 0 && taskBox.children.length == 1) {
+      todos[0].checked = false;
       todos[0].taskinp = "";
       taskBox.children[0].children[1].value = "";
       taskBox.children[0].children[0].textContent = "";
