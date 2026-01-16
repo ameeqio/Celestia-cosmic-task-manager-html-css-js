@@ -160,6 +160,7 @@ window.addEventListener("DOMContentLoaded", () => {
   } else {
     document.querySelector(".task").querySelector(".tick-btn").textContent = "";
   }
+
   document.querySelector(".task").querySelector(".inp-task").value =
     todos[0].taskinp;
 
@@ -183,6 +184,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
     taskBox.appendChild(newTask);
   }
-  saveTodos();
+  // saveTodos();
   localStorage.setItem("bg-img", bg_img);
 });
