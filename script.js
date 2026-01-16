@@ -182,4 +182,5 @@ window.addEventListener("DOMContentLoaded", () => {
 
     taskBox.appendChild(newTask);
   }
+  saveTodos();
 });
