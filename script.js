@@ -184,4 +184,5 @@ window.addEventListener("DOMContentLoaded", () => {
     taskBox.appendChild(newTask);
   }
   saveTodos();
+  localStorage.setItem("bg-img", bg_img);
 });
