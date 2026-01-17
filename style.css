@@ -218,9 +218,9 @@ i {
   }
 }
 
-@media (max-width : 431px) {
+@media (max-width : 451px) {
   .todo-box {
-    width: 97vw;
+    width: 95vw;
     height: 400px;
   }
 }
